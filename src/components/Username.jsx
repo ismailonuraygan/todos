@@ -1,20 +1,24 @@
 import React,{useState} from 'react'
 
 const Username = () => {
-    const [name, setName] = useState("")
     const [form, setForm] = useState({name: ""})
 
     const handleSubmit2 = (data) => {
         if(data.name.length < 3) {
+          alert("İsiminiz en az 3 karakter içermelidir!")
             return;
         }
         localStorage.setItem("name", data.name)
         const refresh = () => window.location.reload()
         refresh();
-        console.log(localStorage.getItem("name"))
-        setName(localStorage.getItem("name")+"s")   
+        console.log(localStorage.getItem("name"))   
       }
+
       const deleteName =()=>{
+        if(!localStorage.getItem("name")){
+          alert("Kayıtlı isim bulunamadı!") 
+          return;
+        }
         localStorage.clear()
         const refresh = () => window.location.reload()
         refresh();
@@ -24,7 +28,7 @@ const Username = () => {
         <h1 className='text-center font-bold text-2xl mt-5'>
         {localStorage.getItem("name") !== null ? localStorage.getItem("name")+"'s" : ""} TODOS
       </h1>
-      <form className='w-auto min-w-[25%] mx-auto space-y-6 max-w-md flex flex-col items-stretch ' onSubmit={ e=>{
+      <form className='w-auto min-w-[%] mx-auto space-y-6 max-w-md flex flex-col items-stretch ' onSubmit={ e=>{
         e.preventDefault()
         handleSubmit2(form)
       }}>
@@ -36,8 +40,14 @@ const Username = () => {
             onChange={(e) => setForm({...form, name: e.target.value})}
           />
           <button type="submit" className='bg-green-500 text-white px-3 mr-1'>Update Name</button>
-          <button onClick={()=>{deleteName()}} className='bg-red-500 text-white px-3 mr-1'>Delete Name</button>
       </form>
+      <div  className='w-auto min-w-[%] mx-auto space-y-6 max-w-md flex flex-col items-stretch '>
+          <button onClick={()=>{deleteName()}} 
+            className='bg-red-500 text-white px-3 mr-1 mt-2'>
+            Delete Name
+          </button>
+      </div>
+        
     </div>
   )
 }
