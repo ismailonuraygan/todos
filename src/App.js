@@ -17,19 +17,6 @@ function App() {
     fetchDatas()
   },[])
 
-
-  /*const handleUpdate = async (id) => {
-    try{
-      await axios.put(`https://630f2d283792563418893c3d.mockapi.io/todos/${id}`, {
-        title: form.title,
-        content : form.content
-      })
-      setUpdateMode(false)
-    }catch(err){
-
-    }
-  }*/
-
   return (
     <div className="App">
       <Username/>
