@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 
 const Username = () => {
+    const [name, setName] = useState("")
     const [form, setForm] = useState({name: ""})
 
     const handleSubmit2 = (data) => {
@@ -11,6 +12,7 @@ const Username = () => {
         const refresh = () => window.location.reload()
         refresh();
         console.log(localStorage.getItem("name"))
+        setName(localStorage.getItem("name")+"s")   
       }
       const deleteName =()=>{
         localStorage.clear()
